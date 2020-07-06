@@ -1,8 +1,13 @@
 How to use:
 
-1. Double-click clicker.jar
+1. Double-click clicker.jar (or be fancy with java -jar)
 2. Make sure everything shows up properly.
-3. Edit your settings (CpS, Presige levels, etc.) in the Edit menu.
+3. Edit your data (CpS, Presige levels, etc.) in the Edit menu.
+3.5. If you changed versions, just copy over save-data.txt in the resources folder.
+3.75. If you want to reset your saved data,
+	- open save-data.txt
+	- delete everything
+	- put the word "true" to set full reset mode to true
 4. After you are finished using the program, go to Calculator -> Save to save your data.
 5. thats it
 

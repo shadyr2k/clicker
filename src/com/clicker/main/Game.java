@@ -9,6 +9,8 @@ import java.util.Arrays;
 
 public class Game extends Canvas implements Runnable {
 
+    static String version = "1.0.3";
+
     static final int WIDTH = 1280, HEIGHT = 770;
     static BigInteger prestigeLevel;
     static BigInteger currentPrestigeLevel;

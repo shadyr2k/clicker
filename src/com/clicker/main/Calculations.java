@@ -61,11 +61,11 @@ class Calculations extends Tech {
             g2d.drawString(next777[1] + " cookies away", 11 + g2d.getFontMetrics().stringWidth("Next 777: end in " + next777[2] + ", "), 655);
             g2d.drawString(next777777[1] + " cookies away", 11 + g2d.getFontMetrics().stringWidth("Next 777777: end in " + next777777[2] + ", "), 675);
 
+            g2d.setColor(Color.WHITE);
             g2d.setFont(font.deriveFont(10.0f));
-            g2d.drawString("cars10 - v1.0.1", 1184, 700);
+            g2d.drawString("cars10 - v" + Game.version, 1184, 700);
 
             g2d.setFont(font.deriveFont(22.0f));
-            g2d.setColor(Color.WHITE);
             g2d.drawString(Clicked.tagName, 839, 55);
             String price = Clicked.tagPrice.isEmpty() ? "" : String.format("%,d", Long.parseLong(Clicked.tagPrice));
             g2d.setColor(Color.ORANGE);
