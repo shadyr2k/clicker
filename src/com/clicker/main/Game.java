@@ -46,23 +46,12 @@ public class Game extends Canvas implements Runnable {
         }
     }
     public void run(){
-        long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
-        double ns = 1000000000/amountOfTicks;
-        double delta = 0;
         long timer = System.currentTimeMillis();
         int frames = 0;
         while(running){
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-            while(delta >= 1){
-                delta--;
-            }
-            if(running){
-                render();
-                frames++;
-            }
+            render();
+            frames++;
+
             if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
                 System.out.println("FPS: " + frames);
@@ -209,7 +198,7 @@ public class Game extends Canvas implements Runnable {
         Stevia_Caelestis stevia_caelestis = new Stevia_Caelestis(172, 161, 100000000, ID.Stevia_Caelestis, "Stevia Caelestis");
         Sucralosia_Inutilis sucralosia_inutilis = new Sucralosia_Inutilis(299, 204, 1000000000, ID.Sucralosia_Inutilis, "Sucralosia Inutilis");
         Sugar_aging_process sugar_aging_process = new Sugar_aging_process(327, 20, 600000000, ID.Sugar_aging_process, "Sugar Aging Process");
-        Sugar_baking sugar_baking = new Sugar_baking(212, 96, 400000000, ID.Sugar_baking, "Sugar Baking");
+        Sugar_baking sugar_baking = new Sugar_baking(212, 96, 200000000, ID.Sugar_baking, "Sugar Baking");
         Sugar_craving sugar_craving = new Sugar_craving(257, 35, 400000000, ID.Sugar_craving, "Sugar Craving");
         Sugar_crystal_cookies sugar_crystal_cookies = new Sugar_crystal_cookies(128, 73, 1000000000, ID.Sugar_crystal_cookies, "Sugar Crystal Cookies");
         Synergies synergies = new Synergies(570, 150, 222222, ID.Synergies, "Synergies Vol I");

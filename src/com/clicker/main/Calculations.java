@@ -25,18 +25,31 @@ public class Calculations extends Tech {
             Font font = Font.createFont(Font.TRUETYPE_FONT, new File("assets//fonts/poppins.otf"));
             ge.registerFont(font);
             g2d.setFont(font.deriveFont(18.0f));
-            g2d.setColor(Color.WHITE);
-            g2d.drawString("Grand Total: " + String.format("%,d", Game.price), 11,480);
             String heavenlyChipsNeeded = BigInteger.valueOf(Game.price).subtract(Game.currentPrestigeLevel).compareTo(BigInteger.ZERO) < 0
                     ? "0"
                     : String.format("%,d", BigInteger.valueOf(Game.price).subtract(Game.currentPrestigeLevel));
-            g2d.drawString("Heavenly Chips Needed: " + heavenlyChipsNeeded, 11,510);
-            g2d.drawString("Cookies Needed: " + convertToWords(heavenlyChipsToCookies(BigInteger.valueOf(Game.price), Game.currentPrestigeLevel.add(Game.prestigeLevel))), 11,540);
-            g2d.drawString("Cookies Needed (all time): " + heavenlyChipsToCookiesAllTime(BigInteger.valueOf(Game.price)), 11,570);
-            g2d.drawString("Approximate time needed: " + timeBake(Game.currentCpS, heavenlyChipsToCookies(BigInteger.valueOf(Game.price), Game.currentPrestigeLevel.add(Game.prestigeLevel))), 11,600);
+
+            g2d.setColor(Color.YELLOW);
+            g2d.drawString(String.format("%,d", Game.price), 11 + g2d.getFontMetrics().stringWidth("Grand Total: "), 480);
+            g2d.drawString(heavenlyChipsNeeded, 11 + g2d.getFontMetrics().stringWidth("Heavenly Chips Needed: "), 510);
+            g2d.drawString(convertToWords(heavenlyChipsToCookies(BigInteger.valueOf(Game.price), Game.currentPrestigeLevel.add(Game.prestigeLevel))), 11 + g2d.getFontMetrics().stringWidth("Cookies Needed: "), 540);
+            g2d.drawString(heavenlyChipsToCookiesAllTime(BigInteger.valueOf(Game.price)), 11 + g2d.getFontMetrics().stringWidth("Cookies Needed (all time): "), 570);
+            g2d.drawString(timeBake(Game.currentCpS, heavenlyChipsToCookies(BigInteger.valueOf(Game.price), Game.currentPrestigeLevel.add(Game.prestigeLevel))), 11 + g2d.getFontMetrics().stringWidth("Approximate time needed: "), 600);
+
+            g2d.setColor(Color.WHITE);
+            g2d.drawString("Grand Total: ", 11,480);
+            g2d.drawString("Heavenly Chips Needed: ", 11,510);
+            g2d.drawString("Cookies Needed: ", 11,540);
+            g2d.drawString("Cookies Needed (all time): ", 11,570);
+            g2d.drawString("Approximate time needed: ", 11,600);
 
             g2d.setFont(font.deriveFont(14.0f));
-            g2d.drawString("Next 7: " + heavenlyChipsToCookiesAllTime(BigInteger.valueOf(Game.price)), 11,660);
+            String[] next7 = next7(Game.currentPrestigeLevel, Game.prestigeLevel, "7");
+            String[] next777 = next7(Game.currentPrestigeLevel, Game.prestigeLevel, "777");
+            String[] next777777 = next7(Game.currentPrestigeLevel, Game.prestigeLevel, "777777");
+            g2d.drawString("Next 7: " + next7[0] + ", " + next7[1] + " cookies away", 11,635);
+            g2d.drawString("Next 777: ", 11,655);
+            g2d.drawString("Next 777777: ", 11,675);
 
             g2d.setFont(font.deriveFont(10.0f));
             g2d.drawString("cars10 - v0.5.0" , 1184,700);
@@ -82,7 +95,7 @@ public class Calculations extends Tech {
     }
 
     private String timeBake(BigInteger cps, BigInteger goal){
-        if(cps.compareTo(BigInteger.ZERO) == 0) return "0";
+        if(cps.compareTo(BigInteger.ZERO) == 0) return "Enter CpS!";
         BigInteger seconds = goal.divide(cps.multiply(BigInteger.valueOf(34)));
 
         if(seconds.compareTo(BigInteger.valueOf(3153600000L)) > 0) return "Over a century.";
@@ -102,7 +115,7 @@ public class Calculations extends Tech {
         s += minutes.compareTo(BigInteger.ZERO) == 0 ? "" : minutes + "m ";
         s += seconds.compareTo(BigInteger.ZERO) == 0 ? "" : seconds + "s ";
 
-        return s;
+        return s.isEmpty() ? "0" : s;
     }
 
     private String convertToWords(BigInteger b){

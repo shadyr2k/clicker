@@ -44,7 +44,6 @@ class Window extends Canvas {
         cps.addActionListener(clicked);
 
         f.setJMenuBar(mb);
-
         f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
