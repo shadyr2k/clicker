@@ -60,7 +60,6 @@ public class Calculations extends Tech {
     private static String[] next7(BigInteger current, BigInteger level, String end){
         BigInteger b = current.add(level);
         BigInteger goal;
-
         BigInteger loop = b.mod(BigInteger.TWO).compareTo(BigInteger.ZERO) == 0 ? b.add(BigInteger.ONE) : b;
         for(BigInteger i = loop;;i = i.add(BigInteger.TWO)){
             if(i.toString().endsWith(end)){
