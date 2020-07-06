@@ -2,15 +2,14 @@ package com.clicker.main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 
-public class Calculations extends Tech {
+class Calculations extends Tech {
 
-    Calculations(int x, int y, ID id) {
-        super(x, y, id);
+    Calculations(int x, int y) {
+        super(x, y);
     }
 
     @Override

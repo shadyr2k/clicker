@@ -11,7 +11,7 @@ public class Clicked implements MouseListener, ActionListener, MouseMotionListen
     static String tagPrice = "";
     static boolean found = false;
 
-    public Clicked(){}
+    Clicked(){}
 
     @Override
     public void mousePressed(MouseEvent e){
@@ -58,6 +58,7 @@ public class Clicked implements MouseListener, ActionListener, MouseMotionListen
             tagPrice = "";
         }
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

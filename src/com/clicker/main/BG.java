@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class BG extends Tech {
 
-    public BG(int x, int y, ID id) {
-        super(x, y, id);
+    public BG(int x, int y) {
+        super(x, y);
     }
 
     @Override

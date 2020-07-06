@@ -1,8 +1,7 @@
 package com.clicker.main;
 
-import com.clicker.icons.*;
-
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Canvas;
 import java.awt.image.BufferStrategy;
 import java.io.*;
 import java.math.BigInteger;
@@ -75,7 +74,7 @@ public class Game extends Canvas implements Runnable {
         b.show();
     }
 
-    public Game() {
+    private Game() {
 
         currentPrestigeLevel = BigInteger.ZERO;
         prestigeLevel = BigInteger.ZERO;
@@ -85,6 +84,7 @@ public class Game extends Canvas implements Runnable {
         readTxt(fileData);
 
         System.out.println(currentPrestigeLevel);
+
         try {
             if(fileData.get(0).equalsIgnoreCase("true")){
                 File file = new File("resources/save-data.txt");
@@ -123,93 +123,94 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Ascension Upgrade Calculator", this);
 
         handler = new Handler();
+
         techHandler = new TechHandler();
 
-        techHandler.addObject(new BG(0, 0, ID.BG));
-        techHandler.addObject(new Calculations(0, 0, ID.Calculations));
+        techHandler.addObject(new BG(0, 0));
+        techHandler.addObject(new Calculations(0, 0));
 
-        Twin_Gates_of_Transcendence twin_gates_of_transcendence = new Twin_Gates_of_Transcendence(759, 191, 1, ID.Twin_Gates_of_Transcendence, "Twin Gates of Transcendence");
-        Angels angels = new Angels(715, 120, 7, ID.Angels, "Angels");
-        Abaddon abaddon = new Abaddon(596, 217, 343, ID.Abaddon, "Abaddon");
-        Archangels archangels = new Archangels(668,112,49, ID.Archangels, "Archangels");
-        Asmodeus asmodeus = new Asmodeus(500, 188, 16807, ID.Asmodeus, "Asmodeus");
-        Basic_wallpaper basic_wallpaper = new Basic_wallpaper(746, 470, 99, ID.Basic_wallpaper, "Basic Wallpaper Assortment");
-        Beelzebub beelzebub = new Beelzebub(452, 169, 117649, ID.Beelzebub, "Beelzebub");
-        Belphegor belphegor = new Belphegor(693, 239, 7, ID.Belphegor, "Belphegor");
-        Box_of_brand_biscuits box_of_brand_biscuits = new Box_of_brand_biscuits(448, 394, 25, ID.Box_of_brand_biscuits, "Box of Brand Biscuits");
-        Box_of_macarons box_of_macarons = new Box_of_macarons(448, 448, 25, ID.Box_of_macarons, "Box of Macarons");
-        Box_of_maybe_cookies box_of_maybe_cookies = new Box_of_maybe_cookies(60, 73, 333000000000L, ID.Box_of_maybe_cookies, "Box of Maybe Cookies");
-        Box_of_not_cookies box_of_not_cookies = new Box_of_not_cookies(60, 133, 333000000000L, ID.Box_of_not_cookies, "Box of Not Cookies");
-        Box_of_pastries box_of_pastries = new Box_of_pastries(60, 15, 333000000000L, ID.Box_of_pastries, "Box of Pastries");
-        Cherubim cherubim = new Cherubim(524, 81, 16807, ID.Cherubim, "Cherubim");
-        Chimera chimera = new Chimera(367, 85, 40353607, ID.Chimera, "Chimera");
-        Cosmic_beginners_luck cosmic_beginners_luck = new Cosmic_beginners_luck(1014, 202, 14999999985L, ID.Cosmic_beginners_luck, "Cosmic Beginner's Luck");
-        Cosmic_milk cosmic_milk = new Cosmic_milk(746, 381, 1000000, ID.Cosmic_milk, "Fanciful Dairy Selection");
-        Diabetica_Daemonicus diabetica_daemonicus = new Diabetica_Daemonicus(297, 132, 300000000, ID.Diabetica_Daemonicus, "Diabetica Daemonicus");
-        Distilled_Essence_of_Redoubled_Luck distilled_essence_of_redoubled_luck = new Distilled_Essence_of_Redoubled_Luck(1080, 407, 7777777, ID.Distilled_Essence_of_Redoubled_Luck, "Distilled Essence of Redoubled Luck");
-        Divine_bakeries divine_bakeries = new Divine_bakeries(1096, 576, 399999, ID.Divine_bakeries, "Divine Bakeries");
-        Divine_discount divine_discount = new Divine_discount(1028, 613, 99999, ID.Divine_discount, "Divine Discount");
-        Divine_sales divine_sales = new Divine_sales(1028, 541, 99999, ID.Divine_sales, "Divine Sales");
-        Dominions dominions = new Dominions(572, 92, 2401, ID.Dominions, "Dominions");
-        Eye_of_the_wrinkler eye_of_the_wrinkler = new Eye_of_the_wrinkler(106, 356, 99999999, ID.Eye_of_the_wrinkler, "Eye of the Wrinkler");
-        Five_finger_discount five_finger_discount = new Five_finger_discount(393, 229, 555555, ID.Five_finger_discount, "Five Finger Discount");
-        Fortune_cookies fortune_cookies = new Fortune_cookies(1164, 355, 77777777777L, ID.Fortune_cookies, "Fortune Cookies");
-        Four_leaf_cookie four_leaf_cookie = new Four_leaf_cookie(899, 459, 99999, ID.Four_leaf_cookie, "Residual Luck");
-        Genius_accounting genius_accounting = new Genius_accounting(880, 155, 2000000, ID.Genius_accounting, "Genius Accounting");
-        GhostCookieNew ghostCookieNew = new GhostCookieNew(604, 605, 111111, ID.GhostCookieNew, "Starterror");
-        God god = new God(430, 55, 823543, ID.God, "God");
-        GoldCookieNew goldCookieNew = new GoldCookieNew(930, 574, 7777, ID.GoldCookieNew, "Decisive Fate");
-        GoldCursorNew goldCursorNew = new GoldCursorNew(367, 366, 50, ID.GoldCursorNew, "Starter Kit");
-        Golden_cookie_alert_sound golden_cookie_alert_sound = new Golden_cookie_alert_sound(962, 501, 9999, ID.Golden_cookie_alert_sound, "Golden Cookie Alert Sound");
-        Golden_switch golden_switch = new Golden_switch(825, 492, 999, ID.Golden_switch, "Golden Switch");
-        GoldRollingPinNew goldRollingPinNew = new GoldRollingPinNew(302, 343, 5000, ID.GoldRollingPinNew, "Starter Kitchen");
-        Halo_gloves halo_gloves = new Halo_gloves(355, 293, 55555, ID.Halo_gloves, "Halo Gloves");
-        Heavenly_cookies heavenly_cookies = new Heavenly_cookies(538, 366, 3, ID.Heavenly_cookies, "Heavenly Cookies");
-        Heavenly_luck heavenly_luck = new Heavenly_luck(769, 559, 77, ID.Heavenly_luck, "Heavenly Luck");
-        Heralds heralds = new Heralds(602, 456, 100, ID.Heralds, "Heralds");
-        How_to_bake_your_dragon how_to_bake_your_dragon = new How_to_bake_your_dragon(552, 430, 9, ID.How_to_bake_your_dragon, "How to bake your dragon");
-        Inspired_checklist inspired_checklist = new Inspired_checklist(850, 231, 900000, ID.Inspired_checklist, "Inspired Checklist");
-        I one = new I(819, 346, 100, ID.I, "Permanent Upgrade Slot I");
-        II two = new II(842, 409, 2000, ID.II, "Permanent Upgrade Slot II");
-        III three = new III(904, 373, 30000, ID.III, "Permanent Upgrade Slot III");
-        IV four = new IV(886, 306, 400000, ID.IV, "Permanent Upgrade Slot IV");
-        V five = new V(956, 273, 5000000, ID.V, "Permanent Upgrade Slot V");
-        Keepsakes keepsakes = new Keepsakes(604, 660, 1111111111, ID.Keepsakes, "Keepsakes");
-        Kitten_angels kitten_angels = new Kitten_angels(558, 9, 9000, ID.Kitten_angels, "Kitten Angels");
-        Label_printer label_printer = new Label_printer(280, 415, 999999, ID.Label_printer, "Label Printer");
-        Lasting_fortune lasting_fortune = new Lasting_fortune(847, 567, 777, ID.Lasting_fortune, "Lasting Fortune");
-        Legacy legacy = new Legacy(611, 357, 1, ID.Legacy, "Legacy");
-        Lucifer lucifer = new Lucifer(406, 152, 823543, ID.Lucifer, "Lucifer");
-        Lucky_Digit_Number_Payout lucky_digit_number_payout = new Lucky_Digit_Number_Payout(789, 625, 777, ID.Lucky_Digit_Number_Payout, "Lucky Digit");
-        Lucky_Digit_Number_Payout_ lucky_digit_number_payout_ = new Lucky_Digit_Number_Payout_(862, 634, 77777, ID.Lucky_Digit_Number_Payout_, "Lucky Number");
-        Lucky_Digit_Number_Payout__ lucky_digit_number_payout__ = new Lucky_Digit_Number_Payout__(939, 642, 77777777, ID.Lucky_Digit_Number_Payout__, "Lucky Payout");
-        Mammon mammon = new Mammon(644, 229, 49, ID.Mammon, "Mammon");
-        Persistent_memory persistent_memory = new Persistent_memory(777, 283, 500, ID.Persistent_memory, "Persistent Memory");
-        Plain_milk plain_milk = new Plain_milk(671, 420, 9, ID.Plain_milk, "Classic Dairy Selection");
-        Reindeer reindeer = new Reindeer(525, 534, 111111, ID.Reindeer, "Starsnow");
-        Reinforced_membrane reinforced_membrane = new Reinforced_membrane(1097, 202, 14999999985L, ID.Reinforced_membrane, "Reinforced Membrane");
-        Satan satan = new Satan(548, 204, 2401, ID.Satan, "Satan");
-        SeasonsNew seasonsNew = new SeasonsNew(603, 528, 1111, ID.SeasonsNew, "Season Switcher");
-        Seraphim seraphim = new Seraphim(476, 69, 117649, ID.Seraphim, "Seraphim");
-        Shimmering_veil shimmering_veil = new Shimmering_veil(1061, 296, 999999999, ID.Shimmering_veil, "Shimmering Veil");
-        Starlove starlove = new Starlove(550, 588, 111111, ID.Starlove, "Starlove");
-        Starspawn starspawn = new Starspawn(677, 534, 111111, ID.Starspawn, "Starspawn");
-        Startrade startrade = new Startrade(657, 588, 111111, ID.Startrade, "Startrade");
-        Stevia_Caelestis stevia_caelestis = new Stevia_Caelestis(172, 161, 100000000, ID.Stevia_Caelestis, "Stevia Caelestis");
-        Sucralosia_Inutilis sucralosia_inutilis = new Sucralosia_Inutilis(299, 204, 1000000000, ID.Sucralosia_Inutilis, "Sucralosia Inutilis");
-        Sugar_aging_process sugar_aging_process = new Sugar_aging_process(327, 20, 600000000, ID.Sugar_aging_process, "Sugar Aging Process");
-        Sugar_baking sugar_baking = new Sugar_baking(212, 96, 200000000, ID.Sugar_baking, "Sugar Baking");
-        Sugar_craving sugar_craving = new Sugar_craving(257, 35, 400000000, ID.Sugar_craving, "Sugar Craving");
-        Sugar_crystal_cookies sugar_crystal_cookies = new Sugar_crystal_cookies(128, 73, 1000000000, ID.Sugar_crystal_cookies, "Sugar Crystal Cookies");
-        Synergies synergies = new Synergies(570, 150, 222222, ID.Synergies, "Synergies Vol I");
-        SynergiesII synergiesII = new SynergiesII(471, 119, 2222222, ID.SynergiesII, "Synergies Vol II");
-        Tin_of_british_tea_biscuits tin_of_british_tea_biscuits = new Tin_of_british_tea_biscuits(448, 287, 25, ID.Tin_of_british_tea_biscuits, "Tin of British Tea Biscuits");
-        Tin_of_butter_cookies tin_of_butter_cookies = new Tin_of_butter_cookies(448, 340, 25, ID.Tin_of_butter_cookies, "Tin of Butter Cookies");
-        Unholy_bait unholy_bait = new Unholy_bait(271, 274, 44444, ID.Unholy_bait, "Unholy Bait");
-        Virtues virtues = new Virtues(620, 102, 343, ID.Virtues, "Virtues");
-        WrinklerLarvaNew wrinklerLarvaNew = new WrinklerLarvaNew(209, 241, 444444, ID.WrinklerLarvaNew, "Elder Spice");
-        WrinklerLarvaNew_ wrinklerLarvaNew_ = new WrinklerLarvaNew_(209, 304, 444444, ID.WrinklerLarvaNew_, "Sacrilegious Corruption");
-        Wrinkly_cookies wrinkly_cookies = new Wrinkly_cookies(130, 257, 6666666, ID.Wrinkly_cookies, "Wrinkly Cookies");
+        Icon twin_gates_of_transcendence = new Icon(759, 191, 1, "Twin Gates of Transcendence");
+        Icon angels = new Icon(715, 120, 7, "Angels");
+        Icon abaddon = new Icon(596, 217, 343, "Abaddon");
+        Icon archangels = new Icon(668,112,49, "Archangels");
+        Icon asmodeus = new Icon(500, 188, 16807, "Asmodeus");
+        Icon basic_wallpaper = new Icon(746, 470, 99, "Basic Wallpaper Assortment");
+        Icon beelzebub = new Icon(452, 169, 117649, "Beelzebub");
+        Icon belphegor = new Icon(693, 239, 7, "Belphegor");
+        Icon box_of_brand_biscuits = new Icon(448, 394, 25, "Box of Brand Biscuits");
+        Icon box_of_macarons = new Icon(448, 448, 25, "Box of Macarons");
+        Icon box_of_maybe_cookies = new Icon(60, 73, 333000000000L, "Box of Maybe Cookies");
+        Icon box_of_not_cookies = new Icon(60, 133, 333000000000L, "Box of Not Cookies");
+        Icon box_of_pastries = new Icon(60, 15, 333000000000L, "Box of Pastries");
+        Icon cherubim = new Icon(524, 81, 16807, "Cherubim");
+        Icon chimera = new Icon(367, 85, 40353607, "Chimera");
+        Icon cosmic_beginners_luck = new Icon(1014, 202, 14999999985L, "Cosmic Beginner's Luck");
+        Icon cosmic_milk = new Icon(746, 381, 1000000, "Fanciful Dairy Selection");
+        Icon diabetica_daemonicus = new Icon(297, 132, 300000000, "Diabetica Daemonicus");
+        Icon distilled_essence_of_redoubled_luck = new Icon(1080, 407, 7777777, "Distilled Essence of Redoubled Luck");
+        Icon divine_bakeries = new Icon(1096, 576, 399999, "Divine Bakeries");
+        Icon divine_discount = new Icon(1028, 613, 99999, "Divine Discount");
+        Icon divine_sales = new Icon(1028, 541, 99999, "Divine Sales");
+        Icon dominions = new Icon(572, 92, 2401, "Dominions");
+        Icon eye_of_the_wrinkler = new Icon(106, 356, 99999999, "Eye of the Wrinkler");
+        Icon five_finger_discount = new Icon(393, 229, 555555, "Five Finger Discount");
+        Icon fortune_cookies = new Icon(1164, 355, 77777777777L, "Fortune Cookies");
+        Icon four_leaf_cookie = new Icon(899, 459, 99999, "Residual Luck");
+        Icon genius_accounting = new Icon(880, 155, 2000000, "Genius Accounting");
+        Icon ghostCookieNew = new Icon(604, 605, 111111, "Starterror");
+        Icon god = new Icon(430, 55, 823543, "God");
+        Icon goldCookieNew = new Icon(930, 574, 7777, "Decisive Fate");
+        Icon goldCursorNew = new Icon(367, 366, 50, "Starter Kit");
+        Icon golden_cookie_alert_sound = new Icon(962, 501, 9999, "Golden Cookie Alert Sound");
+        Icon golden_switch = new Icon(825, 492, 999, "Golden Switch");
+        Icon goldRollingPinNew = new Icon(302, 343, 5000, "Starter Kitchen");
+        Icon halo_gloves = new Icon(355, 293, 55555, "Halo Gloves");
+        Icon heavenly_cookies = new Icon(538, 366, 3, "Heavenly Cookies");
+        Icon heavenly_luck = new Icon(769, 559, 77, "Heavenly Luck");
+        Icon heralds = new Icon(602, 456, 100, "Heralds");
+        Icon how_to_bake_your_dragon = new Icon(552, 430, 9, "How to bake your dragon");
+        Icon inspired_checklist = new Icon(850, 231, 900000, "Inspired Checklist");
+        Icon one = new Icon(819, 346, 100, "Permanent Upgrade Slot I");
+        Icon two = new Icon(842, 409, 2000, "Permanent Upgrade Slot II");
+        Icon three = new Icon(904, 373, 30000, "Permanent Upgrade Slot III");
+        Icon four = new Icon(886, 306, 400000, "Permanent Upgrade Slot IV");
+        Icon five = new Icon(956, 273, 5000000, "Permanent Upgrade Slot V");
+        Icon keepsakes = new Icon(604, 660, 1111111111, "Keepsakes");
+        Icon kitten_angels = new Icon(558, 9, 9000, "Kitten Angels");
+        Icon label_printer = new Icon(280, 415, 999999, "Label Printer");
+        Icon lasting_fortune = new Icon(847, 567, 777, "Lasting Fortune");
+        Icon legacy = new Icon(611, 357, 1, "Legacy");
+        Icon lucifer = new Icon(406, 152, 823543, "Lucifer");
+        Icon lucky_digit_number_payout = new Icon(789, 625, 777, "Lucky Digit");
+        Icon lucky_digit_number_payout_ = new Icon(862, 634, 77777, "Lucky Number");
+        Icon lucky_digit_number_payout__ = new Icon(939, 642, 77777777, "Lucky Payout");
+        Icon mammon = new Icon(644, 229, 49, "Mammon");
+        Icon persistent_memory = new Icon(777, 283, 500, "Persistent Memory");
+        Icon plain_milk = new Icon(671, 420, 9, "Classic Dairy Selection");
+        Icon reindeer = new Icon(525, 534, 111111, "Starsnow");
+        Icon reinforced_membrane = new Icon(1097, 202, 14999999985L, "Reinforced Membrane");
+        Icon satan = new Icon(548, 204, 2401, "Satan");
+        Icon seasonsNew = new Icon(603, 528, 1111, "Season Switcher");
+        Icon seraphim = new Icon(476, 69, 117649, "Seraphim");
+        Icon shimmering_veil = new Icon(1061, 296, 999999999, "Shimmering Veil");
+        Icon starlove = new Icon(550, 588, 111111, "Starlove");
+        Icon starspawn = new Icon(677, 534, 111111, "Starspawn");
+        Icon startrade = new Icon(657, 588, 111111, "Startrade");
+        Icon stevia_caelestis = new Icon(172, 161, 100000000, "Stevia Caelestis");
+        Icon sucralosia_inutilis = new Icon(299, 204, 1000000000, "Sucralosia Inutilis");
+        Icon sugar_aging_process = new Icon(327, 20, 600000000, "Sugar Aging Process");
+        Icon sugar_baking = new Icon(212, 96, 200000000, "Sugar Baking");
+        Icon sugar_craving = new Icon(257, 35, 400000000, "Sugar Craving");
+        Icon sugar_crystal_cookies = new Icon(128, 73, 1000000000, "Sugar Crystal Cookies");
+        Icon synergies = new Icon(570, 150, 222222, "Synergies Vol I");
+        Icon synergiesII = new Icon(471, 119, 2222222, "Synergies Vol II");
+        Icon tin_of_british_tea_biscuits = new Icon(448, 287, 25, "Tin of British Tea Biscuits");
+        Icon tin_of_butter_cookies = new Icon(448, 340, 25, "Tin of Butter Cookies");
+        Icon unholy_bait = new Icon(271, 274, 44444, "Unholy Bait");
+        Icon virtues = new Icon(620, 102, 343, "Virtues");
+        Icon wrinklerLarvaNew = new Icon(209, 241, 444444, "Elder Spice");
+        Icon wrinklerLarvaNew_ = new Icon(209, 304, 444444, "Sacrilegious Corruption");
+        Icon wrinkly_cookies = new Icon(130, 257, 6666666, "Wrinkly Cookies");
 
         icons.add(twin_gates_of_transcendence);
         icons.add(angels);
@@ -297,10 +298,10 @@ public class Game extends Canvas implements Runnable {
         for (Icon icon : icons) {
             handler.addObject(icon);
         }
+
         System.out.println(icons.size());
         for(int i = 0; i < icons.size(); ++i){
             if(data[i]) {
-                System.out.println("true " + i);
                 icons.get(i).setToggled(-1);
             }
         }
@@ -309,12 +310,10 @@ public class Game extends Canvas implements Runnable {
         this.addMouseMotionListener(clicked);
     }
 
-    public static void save(){
+    static void save(){
         System.out.println("test");
         for(int i = 0; i < icons.size(); ++i){
-            if(icons.get(i).getToggled() == -1)
-                data[i] = true;
-            else data[i] = false;
+            data[i] = icons.get(i).getToggled() == -1;
         }
         System.out.println(Arrays.toString(data));
 

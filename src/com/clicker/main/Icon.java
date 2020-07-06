@@ -1,43 +1,53 @@
 package com.clicker.main;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public abstract class Icon {
+class Icon {
 
-    protected int x, y;
-    protected ID id;
-    protected int toggled;
-    protected long price;
-    protected String tag;
-    protected Rectangle r;
+    private int x, y, picX, picY;
+    private int toggled;
+    private long price;
+    private String tag;
+    private Rectangle r;
 
-    public Icon(int x, int y, long price, ID id, String tag){
+    Icon(int x, int y, long price, String tag){
         this.x = x;
         this.y = y;
-        this.id = id;
+        picX = x + 5;
+        picY = y + 5;
         this.price = price;
         this.tag = tag;
         r = new Rectangle(x, y, 40, 40);
     }
 
-    public abstract void render(Graphics g);
+    void render(Graphics g){
+        try {
+            BufferedImage rectangle = ImageIO.read(new File("assets/sprites/border" + toggled + ".png"));
+            BufferedImage icon = ImageIO.read(new File("assets/sprites/" + tag.replaceAll("\\s", "_").replaceAll("'", "") + ".png"));
+            g.drawImage(rectangle, x, y, null);
+            g.drawImage(icon, picX, picY, null);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public int getToggled(){
+    int getToggled(){
        return toggled;
     }
-    public long getPrice(){
+    long getPrice(){
         return price;
     }
-    public void setToggled(int toggled){
+    void setToggled(int toggled){
         this.toggled = toggled;
     }
-    public void setPrice(long price){
-        this.price = price;
-    }
-    public String getTag() {
+    String getTag() {
         return tag;
     }
-    public Rectangle getHitbox(){
+    Rectangle getHitbox(){
         return r;
     }
 }
