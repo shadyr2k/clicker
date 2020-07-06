@@ -8,14 +8,14 @@ import java.io.IOException;
 
 public class BG extends Tech {
 
-    public BG(int x, int y) {
+    BG(int x, int y) {
         super(x, y);
     }
 
     @Override
     public void render(Graphics g) {
         try {
-            BufferedImage GameBG = ImageIO.read(new File("assets//background/background.png"));
+            BufferedImage GameBG = ImageIO.read(new File("assets/background/background.png"));
             g.drawImage(GameBG, x, y, null);
         } catch (IOException e) {
             e.printStackTrace();

@@ -5,7 +5,7 @@ import java.awt.*;
 abstract class Tech {
     int x, y;
 
-    Tech(int x, int y){
+    Tech(int x, int y) {
         this.x = x;
         this.y = y;
     }

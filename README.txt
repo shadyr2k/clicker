@@ -15,8 +15,10 @@ Features:
 	- Cookies Needed: how many cookies you still need to bake to get amount of heavenly chips
 	- Cookies Needed (all time): how many cookies you baked throughout all ascensions to get to amount of heavenly chips (more of a for fun fact)
 	- Approximate Time: how much longer before you acquire amount of heavenly chips (very inaccurate but 90% of the time it'll be faster than what's displayed so you can use it as an upper bound on wait time)
+- Next 7, 777, and 777777 timings for Lucky prestige upgrades. (Ends in # means your current level can be any number ending in displayed #)
 
 Upcoming Features:
 - Recommended Purchases
-- Lucky Number (7, 777, 777777) timings
 - idk
+
+If anything is wrong/bugs out or the thing crashes, notify me on discord: tan⁻¹#6969

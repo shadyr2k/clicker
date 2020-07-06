@@ -1,7 +1,6 @@
 package com.clicker.main;
 
-import java.awt.Graphics;
-import java.awt.Canvas;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.*;
 import java.math.BigInteger;
@@ -11,68 +10,19 @@ import java.util.Arrays;
 public class Game extends Canvas implements Runnable {
 
     static final int WIDTH = 1280, HEIGHT = 770;
-    private Thread thread;
-    private boolean running = false;
-    private Clicked clicked;
-
     static BigInteger prestigeLevel;
     static BigInteger currentPrestigeLevel;
     static BigInteger currentCpS;
     static long price;
-
     static String CpSplaceholder;
-
     static boolean[] data = new boolean[82];
-
+    static ArrayList<Icon> icons = new ArrayList<>();
+    private Thread thread;
+    private boolean running = false;
+    private Clicked clicked;
     private Handler handler;
     private TechHandler techHandler;
 
-    static ArrayList<Icon> icons = new ArrayList<>();
-
-
-    synchronized void start(){
-        thread = new Thread(this);
-        thread.start();
-        running = true;
-    }
-
-    private synchronized void stop(){
-        try {
-            thread.join();
-            running = false;
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public void run(){
-        long timer = System.currentTimeMillis();
-        int frames = 0;
-        while(running){
-            render();
-            frames++;
-
-            if(System.currentTimeMillis() - timer > 1000){
-                timer += 1000;
-                System.out.println("FPS: " + frames);
-                frames = 0;
-            }
-        }
-        stop();
-    }
-
-    private void render(){
-        BufferStrategy b = this.getBufferStrategy();
-        if(b == null){
-            this.createBufferStrategy(3);
-            return;
-        }
-        Graphics g = b.getDrawGraphics();
-        techHandler.render(g);
-        handler.render(g);
-
-        g.dispose();
-        b.show();
-    }
 
     private Game() {
 
@@ -86,28 +36,29 @@ public class Game extends Canvas implements Runnable {
         System.out.println(currentPrestigeLevel);
 
         try {
-            if(fileData.get(0).equalsIgnoreCase("true")){
+            if (fileData.get(0).equalsIgnoreCase("true")) {
                 File file = new File("resources/save-data.txt");
-                if(file.delete())
+                if (file.delete())
                     System.out.println("deleted file: resources/save-data.txt");
-                if(file.createNewFile())
+                if (file.createNewFile())
                     System.out.println("created file: resources/save-data.txt");
 
                 PrintWriter pw = new PrintWriter(new FileWriter("resources/save-data.txt", true));
-                String s = "false" +
-                        "\n" +
-                        "prestige-levels=0" +
-                        "\n" +
-                        "current-levels=0" +
-                        "\n" +
-                        "current-cps=0" +
-                        "\n" +
-                        Arrays.toString(data).replaceAll("[\\[\\]]", "");
-                pw.write(s);
+                StringBuilder sb = new StringBuilder();
+                sb.append("false");
+                sb.append("\n");
+                sb.append("prestige-levels=0");
+                sb.append("\n");
+                sb.append("current-levels=0");
+                sb.append("\n");
+                sb.append("current-cps=0");
+                sb.append("\n");
+                sb.append(Arrays.toString(data).replaceAll("[\\[\\]]", ""));
+                pw.write(sb.toString());
                 pw.close();
                 readTxt(fileData);
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -116,7 +67,7 @@ public class Game extends Canvas implements Runnable {
         currentCpS = new BigInteger(fileData.get(3).split("=")[1]);
         CpSplaceholder = currentCpS.toString();
         String[] toConvertBoolean = fileData.get(4).split(", ");
-        for(int i = 0; i < data.length; ++i)
+        for (int i = 0; i < data.length; ++i)
             data[i] = Boolean.parseBoolean(toConvertBoolean[i]);
 
 
@@ -132,7 +83,7 @@ public class Game extends Canvas implements Runnable {
         Icon twin_gates_of_transcendence = new Icon(759, 191, 1, "Twin Gates of Transcendence");
         Icon angels = new Icon(715, 120, 7, "Angels");
         Icon abaddon = new Icon(596, 217, 343, "Abaddon");
-        Icon archangels = new Icon(668,112,49, "Archangels");
+        Icon archangels = new Icon(668, 112, 49, "Archangels");
         Icon asmodeus = new Icon(500, 188, 16807, "Asmodeus");
         Icon basic_wallpaper = new Icon(746, 470, 99, "Basic Wallpaper Assortment");
         Icon beelzebub = new Icon(452, 169, 117649, "Beelzebub");
@@ -300,8 +251,8 @@ public class Game extends Canvas implements Runnable {
         }
 
         System.out.println(icons.size());
-        for(int i = 0; i < icons.size(); ++i){
-            if(data[i]) {
+        for (int i = 0; i < icons.size(); ++i) {
+            if (data[i]) {
                 icons.get(i).setToggled(-1);
             }
         }
@@ -310,25 +261,29 @@ public class Game extends Canvas implements Runnable {
         this.addMouseMotionListener(clicked);
     }
 
-    static void save(){
+    static void save() {
         System.out.println("test");
-        for(int i = 0; i < icons.size(); ++i){
+        for (int i = 0; i < icons.size(); ++i) {
             data[i] = icons.get(i).getToggled() == -1;
         }
         System.out.println(Arrays.toString(data));
 
         try {
             PrintWriter pw = new PrintWriter(new FileWriter("resources/save-data.txt"));
-            String s = "false" +
-                    "\n" +
-                    "prestige-levels=" + prestigeLevel +
-                    "\n" +
-                    "current-levels=" + currentPrestigeLevel +
-                    "\n" +
-                    "current-cps=" + currentCpS +
-                    "\n" +
-                    Arrays.toString(data).replaceAll("[\\[\\]]", "");
-            pw.write(s);
+            StringBuilder sb = new StringBuilder();
+            sb.append("false");
+            sb.append("\n");
+            sb.append("prestige-levels=");
+            sb.append(prestigeLevel);
+            sb.append("\n");
+            sb.append("current-levels=");
+            sb.append(currentPrestigeLevel);
+            sb.append("\n");
+            sb.append("current-cps=");
+            sb.append(currentCpS);
+            sb.append("\n");
+            sb.append(Arrays.toString(data).replaceAll("[\\[\\]]", ""));
+            pw.write(sb.toString());
             pw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -336,7 +291,56 @@ public class Game extends Canvas implements Runnable {
 
     }
 
-    private void readTxt(ArrayList<String> arrayList){
+    public static void main(String[] args) {
+        new Game();
+    }
+
+    synchronized void start() {
+        thread = new Thread(this);
+        thread.start();
+        running = true;
+    }
+
+    private synchronized void stop() {
+        try {
+            thread.join();
+            running = false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void run() {
+        long timer = System.currentTimeMillis();
+        int frames = 0;
+        while (running) {
+            render();
+            frames++;
+
+            if (System.currentTimeMillis() - timer > 1000) {
+                timer += 1000;
+                System.out.println("FPS: " + frames);
+                frames = 0;
+            }
+        }
+        stop();
+    }
+
+    private void render() {
+        BufferStrategy b = this.getBufferStrategy();
+        if (b == null) {
+            this.createBufferStrategy(3);
+            return;
+        }
+        Graphics g = b.getDrawGraphics();
+        techHandler.render(g);
+        handler.render(g);
+
+        g.dispose();
+        b.show();
+    }
+
+    private void readTxt(ArrayList<String> arrayList) {
         InputStream inputStream = null;
         try {
             inputStream = new FileInputStream("resources/save-data.txt");
@@ -348,28 +352,25 @@ public class Game extends Canvas implements Runnable {
         try {
             String line;
             bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            while((line = bufferedReader.readLine()) != null)
+            while ((line = bufferedReader.readLine()) != null)
                 arrayList.add(line);
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if(bufferedReader != null) {
+            if (bufferedReader != null) {
                 try {
                     bufferedReader.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            if(inputStream != null){
+            if (inputStream != null) {
                 try {
                     inputStream.close();
-                } catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
-    }
-    public static void main(String[] args){
-        new Game();
     }
 }

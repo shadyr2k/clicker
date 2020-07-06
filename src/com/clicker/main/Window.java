@@ -1,14 +1,14 @@
 package com.clicker.main;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.*;
 
 class Window extends Canvas {
     private static final long serialVersionUID = -6930025877466834394L;
-    Window(int width, int height, String title, Game game){
+
+    Window(int width, int height, String title, Game game) {
         JFrame f = new JFrame(title);
         Clicked clicked = new Clicked();
         f.setPreferredSize(new Dimension(width, height));
@@ -47,7 +47,7 @@ class Window extends Canvas {
         f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if(JOptionPane.showConfirmDialog(f, "Close Window?", "Make sure to save your changes!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION)
+                if (JOptionPane.showConfirmDialog(f, "Close Window?", "Make sure to save your changes!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION)
                     System.exit(0);
             }
         });

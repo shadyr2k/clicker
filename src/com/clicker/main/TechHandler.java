@@ -3,7 +3,7 @@ package com.clicker.main;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
-public class TechHandler {
+class TechHandler {
 
     private LinkedList<Tech> object = new LinkedList<>();
 
@@ -16,9 +16,4 @@ public class TechHandler {
     void addObject(Tech obj){
         this.object.add(obj);
     }
-
-    public void removeObject(Tech obj){
-        this.object.remove(obj);
-    }
-
 }
